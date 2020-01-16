@@ -1,7 +1,9 @@
 package MultiThreading;
-import java.util.*;
-//// Achieving thread by Thread class
-class A extends Thread
+import java.*;
+/// Achieving thread by Runnable interface
+
+
+class Aa implements Runnable         ///// class A extends B implements Runnable------------> MultiInheritance
 {
     public void run()
     {
@@ -20,7 +22,7 @@ class A extends Thread
     }
 }
 
-class B extends Thread
+class Bb implements Runnable         ///// class B extends A implements Runnable------------> MultiInheritance
 {
     public void run()
     {
@@ -39,14 +41,23 @@ class B extends Thread
     }
 }
 
-
-public class MultiThreadingBasics
+public class RunnableInterface
 {
     public static void main(String[] args)
     {
-        A obj1  = new A();
-        B obj2  = new B();
-        obj1.run();
-        obj2.run();
+        Runnable obj1 = new Aa();
+        Runnable obj2 = new Bb();
+        Thread t1 = new Thread(obj1);
+        Thread t2 = new Thread(obj2);
+        t1.start();
+        try
+        {
+            Thread.sleep(10);
+        }
+        catch (Exception e)
+        {
+
+        }
+        t2.start();
     }
 }
